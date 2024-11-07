@@ -1,4 +1,5 @@
 #include <string>
+
 #include "Common/Log.h"
 #include "Common/StringUtils.h"
 #include "Core/LuaContext.h"
@@ -20,6 +21,9 @@ extern "C" {
 #include "ext/lua/lualib.h"
 }
 
+// Sol is expensive to include so we only do it here.
+#include "ext/sol/sol.hpp"
+
 LuaContext g_lua;
 
 void LuaContext::Init() {
@@ -30,11 +34,6 @@ void LuaContext::Init() {
 	luaopen_table(L);
 	luaopen_string(L);
 	luaopen_math(L);
-
-	lua_getglobal(L, "_G");
-	// luaL_register(L, NULL, printlib); // for Lua versions < 5.2
-	luaL_setfuncs(L, printlib, 0);  // for Lua versions 5.2 or greater
-	lua_pop(L, 1);
 }
 
 void LuaContext::Shutdown() {

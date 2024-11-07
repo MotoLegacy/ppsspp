@@ -8,7 +8,6 @@
 #include "UI/ImDebugger/ImConsole.h"
 #include "Core/LuaContext.h"
 
-
 ImConsole::ImConsole() {
 	ClearLog();
 	memset(InputBuf, 0, sizeof(InputBuf));
