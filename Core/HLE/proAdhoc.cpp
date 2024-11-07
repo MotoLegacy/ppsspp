@@ -50,7 +50,6 @@
 #include <switch.h>
 #define TCP_MAXSEG 2
 #endif // defined(HAVE_LIBNX) || PPSSPP_PLATFORM(SWITCH)
-
 #include <algorithm>
 #include <mutex>
 #include <cstring>
@@ -80,6 +79,11 @@
 #include "Core/HLE/sceNetAdhoc.h"
 #include "Core/Instance.h"
 #include "proAdhoc.h" 
+
+#ifdef _WIN32
+#undef errno
+#define errno WSAGetLastError()
+#endif
 
 #if PPSSPP_PLATFORM(SWITCH) && !defined(INADDR_NONE)
 // Missing toolchain define

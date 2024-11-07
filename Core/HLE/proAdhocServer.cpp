@@ -66,6 +66,11 @@ extern "C" struct hostent *gethostbyname(const char *name);
 #include "Core/Core.h"
 #include "Core/HLE/proAdhocServer.h"
 
+#ifdef _WIN32
+#undef errno
+#define errno WSAGetLastError()
+#endif
+
 // User Count
 uint32_t _db_user_count = 0;
 

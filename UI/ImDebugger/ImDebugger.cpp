@@ -297,6 +297,10 @@ void ImDebugger::Frame(MIPSDebugInterface *mipsDebug) {
 	if (modulesOpen_) {
 		DrawModules(mipsDebug, &modulesOpen_);
 	}
+
+	if (consoleOpen_) {
+		luaConsole_.Draw(&consoleOpen_);
+	}
 }
 
 void ImDisasmWindow::Draw(MIPSDebugInterface *mipsDebug, bool *open, CoreState coreState) {

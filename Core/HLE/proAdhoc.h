@@ -52,7 +52,6 @@
 #include "Core/HLE/sceUtility.h"
 
 #ifdef _WIN32
-#undef errno
 #undef ESHUTDOWN
 #undef ECONNABORTED
 #undef ECONNRESET
@@ -66,7 +65,6 @@
 #undef EALREADY
 #undef ETIMEDOUT
 #undef EOPNOTSUPP
-#define errno WSAGetLastError()
 #define ESHUTDOWN WSAESHUTDOWN
 #define ECONNABORTED WSAECONNABORTED
 #define ECONNRESET WSAECONNRESET

@@ -52,6 +52,11 @@
 #define INADDR_NONE 0xFFFFFFFF
 #endif
 
+#ifdef _WIN32
+#undef errno
+#define errno WSAGetLastError()
+#endif
+
 bool netInited;
 bool netInetInited;
 

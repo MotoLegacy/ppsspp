@@ -1521,6 +1521,8 @@ list(APPEND NativeAppSource
 	android/jni/TestRunner.cpp
 	UI/ImDebugger/ImDebugger.cpp
 	UI/ImDebugger/ImDebugger.h
+	UI/ImDebugger/ImConsole.cpp
+	UI/ImDebugger/ImConsole.h
 	UI/ImDebugger/ImDisasmView.cpp
 	UI/ImDebugger/ImDisasmView.h
 	UI/DiscordIntegration.cpp
@@ -2035,6 +2037,8 @@ add_library(${CoreLibName} ${CoreLinkType}
 	Core/KeyMap.h
 	Core/KeyMapDefaults.cpp
 	Core/KeyMapDefaults.h
+	Core/LuaContext.cpp
+	Core/LuaContext.h
 	Core/RetroAchievements.h
 	Core/RetroAchievements.cpp
 	Core/ThreadEventQueue.h

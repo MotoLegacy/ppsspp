@@ -14,6 +14,7 @@
 #include "Core/Debugger/DebugInterface.h"
 
 #include "UI/ImDebugger/ImDisasmView.h"
+#include "UI/ImDebugger/ImConsole.h"
 
 // This is the main state container of the whole Dear ImGUI-based in-game cross-platform debugger.
 //
@@ -43,16 +44,11 @@ private:
 	ImDisasmView disasmView_;
 };
 
-class ImLuaConsole {
-public:
-	// Stub
-};
-
 struct ImDebugger {
 	void Frame(MIPSDebugInterface *mipsDebug);
 
 	ImDisasmWindow disasm_;
-	ImLuaConsole luaConsole_;
+	ImConsole luaConsole_;
 
 	// Open variables.
 	bool disasmOpen_ = true;
@@ -61,4 +57,5 @@ struct ImDebugger {
 	bool threadsOpen_ = true;
 	bool callstackOpen_ = true;
 	bool modulesOpen_ = true;
+	bool consoleOpen_ = true;
 };
