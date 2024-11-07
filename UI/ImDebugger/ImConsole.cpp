@@ -6,6 +6,8 @@
 
 #include "UI/ImDebugger/ImDebugger.h"
 #include "UI/ImDebugger/ImConsole.h"
+#include "Core/LuaContext.h"
+
 
 ImConsole::ImConsole() {
 	ClearLog();
@@ -80,11 +82,17 @@ void ImConsole::Draw(bool* p_open) {
 
 	// TODO: display items starting from the bottom
 
-	if (ImGui::SmallButton("Add Debug Text")) { AddLog("%d some text", Items.Size); AddLog("some more text"); AddLog("display very important message here!"); }
+	if (ImGui::SmallButton("Add Debug Text")) {
+		AddLog("%d some text", Items.Size);
+	}
 	ImGui::SameLine();
-	if (ImGui::SmallButton("Add Debug Error")) { AddLog("[error] something went wrong"); }
+	if (ImGui::SmallButton("Add Debug Error")) {
+		AddLog("[error] something went wrong");
+	}
 	ImGui::SameLine();
-	if (ImGui::SmallButton("Clear")) { ClearLog(); }
+	if (ImGui::SmallButton("Clear")) {
+		ClearLog();
+	}
 	ImGui::SameLine();
 	bool copy_to_clipboard = ImGui::SmallButton("Copy");
 	//static float t = 0.0f; if (ImGui::GetTime() - t > 0.02f) { t = ImGui::GetTime(); AddLog("Spam %f", t); }
@@ -222,7 +230,10 @@ void ImConsole::ExecCommand(const char* command_line) {
 			AddLog("%3d: %s\n", i, History[i]);
 	} else {
 		// TODO: Anything else, forward to Lua.
-		AddLog("Unknown command: '%s'\n", command_line);
+		// AddLog("Unknown command: '%s'\n", command_line);
+		std::string response;
+		g_lua.Execute(command_line, &response);
+		AddLog("%s", response.c_str());
 	}
 
 	// On command input, we scroll to bottom even if AutoScroll==false
