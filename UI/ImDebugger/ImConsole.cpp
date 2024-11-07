@@ -17,7 +17,6 @@ ImConsole::ImConsole() {
 	Commands.push_back("HELP");
 	Commands.push_back("HISTORY");
 	Commands.push_back("CLEAR");
-	Commands.push_back("CLASSIFY");
 	AutoScroll = true;
 	ScrollToBottom = false;
 	AddLog("Welcome to Dear ImGui!");
@@ -27,6 +26,7 @@ ImConsole::~ImConsole() {
 	ClearLog();
 	for (int i = 0; i < History.Size; i++)
 		ImGui::MemFree(History[i]);
+	AddLog("# Enter 'HELP' for help.");
 }
 
 // Portable helpers
@@ -74,11 +74,6 @@ void ImConsole::Draw(bool* p_open) {
 		ImGui::EndPopup();
 	}
 
-	ImGui::TextWrapped(
-		"This example implements a console with basic coloring, completion (TAB key) and history (Up/Down keys). A more elaborate "
-		"implementation may want to store entries along with extra data such as timestamp, emitter, etc.");
-	ImGui::TextWrapped("Enter 'HELP' for help.");
-
 	// TODO: display items starting from the bottom
 
 	if (ImGui::SmallButton("Add Debug Text")) {
@@ -105,7 +100,7 @@ void ImConsole::Draw(bool* p_open) {
 	}
 
 	// Options, Filter
-	ImGui::SetNextItemShortcut(ImGuiMod_Ctrl | ImGuiKey_O, ImGuiInputFlags_Tooltip);
+	//ImGui::SetNextItemShortcut(ImGuiMod_Ctrl | ImGuiKey_O, ImGuiInputFlags_Tooltip);
 	if (ImGui::Button("Options"))
 		ImGui::OpenPopup("Options");
 	ImGui::SameLine();
